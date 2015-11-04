@@ -1,12 +1,11 @@
 FROM cachethq/docker:base-d3506c1
 
-RUN apt-get update && apt-get install -y --force-yes git
-
 RUN cd /var/www/html && \
-    rm -Rf * && \
-    git clone --branch=clouda --depth=1 https://github.com/CloudA/Cachet.git . && \
+    git init && \
+    git remote add origin https://github.com/CloudA/Cachet.git && \
+    git fetch && \
+    git checkout -t origin/clouda && \
     rm -Rf .git && \
-    composer install --no-dev -o && \
     chown -R www-data /var/www/html && \
     php composer.phar install --no-dev -o && \
     cp -n vendor/jenssegers/date/src/Lang/zh.php vendor/jenssegers/date/src/Lang/zh-CN.php
