@@ -4,7 +4,7 @@ RUN cd /var/www/html && \
     git init && \
     git remote add origin https://github.com/CloudA/Cachet.git && \
     git fetch && \
-    git checkout -t origin/clouda && \
+    git checkout -t origin/upstream-rebase-2.4 && \
     rm -Rf .git && \
     chown -R www-data /var/www/html && \
     php composer.phar install --no-dev -o && \
